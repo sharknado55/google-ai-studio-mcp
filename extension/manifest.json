@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "AI Studio MCP Bridge",
+  "version": "0.1.0",
+  "description": "Use MCP servers from Google AI Studio. Every tool call waits for your approval before it runs.",
+  "permissions": ["storage"],
+  "host_permissions": ["http://127.0.0.1:3939/*", "http://localhost:3939/*"],
+  "optional_host_permissions": ["https://*/*", "http://*/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://aistudio.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "action": { "default_title": "AI Studio MCP settings" }
+}
